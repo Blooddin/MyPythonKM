@@ -1,4 +1,4 @@
-print('Hello World!')
+print('Hello World!')  
 
 # Function for checking if a number is above, equal or below zero.  
 def check_if_zero(a):
@@ -13,5 +13,4 @@ def check_if_zero(a):
 a = input("Input a number to check if it's more than a zero ")
 a = int(a)
 
-check_if_zero(a)
-
+check_if_zero(a)  
