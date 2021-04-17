@@ -1,4 +1,15 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import sys
+import argparse
+
+
+def checkPositive(value):
+    value = int(value)
+    if value <= 0:
+        raise argparse.ArgumentTypeError(f'The {value} is invalid(not positive)')
+    return value
 
 
 def fibonacci(n: int) -> int:
@@ -17,17 +28,17 @@ def fibonacci(n: int) -> int:
 
 
 if __name__ == '__main__':
-    if len(sys.argv) == 2:
-        if sys.argv[1].isdigit() and sys.argv[1] != '0':
-            a = int(sys.argv[1])
-            print("The "+str(a)+"'s number is "+str(fibonacci(a)))
-        else:
-            print('Input Error')
+    parser = argparse.ArgumentParser(description="calculate the n's fibonacci number")
+    parser.add_argument("-n", "--number", help="display the fibonacci number", type=checkPositive)
+    args = parser.parse_args()
+
+    if(args.number):
+        a = args.number
     else:
-        print('Enter the number of Fibonacci')
-        a = input()
+        a = input('Enter a positive integer ')
         if a.isdigit() and a != '0':
             a = int(a)
-            print("The "+str(a)+"'s number is "+str(fibonacci(a)))
         else:
-            print('Input Error')
+            sys.exit('Incorrect input')
+
+    print(f"The {a}'s is {fibonacci(a)}")

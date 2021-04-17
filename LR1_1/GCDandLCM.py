@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
 def GCD(a, b: int) -> int:
     '''Finding greatest common divisor for a,b'''
     if b > a:
