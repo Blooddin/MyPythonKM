@@ -1,26 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-import sys
 import argparse
 
 
 def checkPositive(value):
     value = int(value)
-    if value <= 0:
-        raise argparse.ArgumentTypeError(f'The {value} is invalid(not positive)')
+    if value < 0:
+        raise argparse.ArgumentTypeError(f'The {value} is invalid(not positive or zero)')
     return value
 
 
 def fibonacci(n: int) -> int:
     '''Finding the n number of Fibonacci'''
-    if n == 1:
+    if n == 0:
         return 0
-    if n == 2:
+    if n == 1:
         return 1
     a = 0
     b = 1
-    for x in range(2, n):
+    for x in range(1, n):
         temp = b
         b = a + b
         a = temp
@@ -32,13 +30,13 @@ if __name__ == '__main__':
     parser.add_argument("-n", "--number", help="display the fibonacci number", type=checkPositive)
     args = parser.parse_args()
 
-    if(args.number):
+    if(not(args.number is None)):
         a = args.number
     else:
         a = input('Enter a positive integer ')
-        if a.isdigit() and a != '0':
+        if a.isdigit():
             a = int(a)
         else:
-            sys.exit('Incorrect input')
+            exit('Incorrect input')
 
     print(f"The {a}'s is {fibonacci(a)}")
