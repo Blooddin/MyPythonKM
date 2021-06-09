@@ -5,18 +5,21 @@
 class myRange():
     def __init__(self, start, end, *args):
         self.arr = range(start, end, *args)
+
     def __iter__(self):
         return iter(self.arr)
+
     def __reversed__(self):
         return reversed(self.arr)
+
     def __contains__(self, value):
         for item in self.arr:
             if item == value:
                 return True
         return False
+
     def __len__(self):
         return(len(self.arr))
-
 
 
 def range(start, end, *args):
@@ -32,7 +35,7 @@ def range(start, end, *args):
         arr.append(i)
         i += step
 
-    if step<0:
+    if step < 0:
         while i > end:
             arr.append(i)
             i += step
@@ -60,11 +63,13 @@ def range(start, end, *args):
 Filter functions
 """
 
+
 def filterEvenNum(in_num):
     if(in_num % 2) == 0:
         return True
     else:
         return False
+
 
 def filterOddNum(in_num):
     if(in_num % 2) == 0:
@@ -72,8 +77,9 @@ def filterOddNum(in_num):
     else:
         return True
 
+
 def filterOnlyHighFive(in_num):
-    if(in_num  % 5) == 0:
+    if(in_num % 5) == 0:
         return True
     else:
         return False
@@ -95,4 +101,6 @@ if __name__ == '__main__':
     R = myRange(1, 10, 5, filterEvenNum)
     print(6 in R)
     print(7 in R)
-    
+    R = myRange(10, 1, -1)
+    for item in reversed(R):
+        print (item)
